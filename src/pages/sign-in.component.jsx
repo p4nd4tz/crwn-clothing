@@ -23,6 +23,7 @@ const SignIn = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        debugger;
         try {
             await signInAuthUserWithEmailAndPassword(formFields);
         } catch (err) {
@@ -68,8 +69,8 @@ const SignIn = () => {
                         onChange={(e) => handleChange(e)}
                     />
                     <div className="flex justify-between">
-                        <Button type="submit" className="py-6 px-12" >Sign in</Button>
-                        <Button className="py-6 px-8" onClic={logGoogleUser}>Google Sign in</Button>
+                        <Button type="submit" className="py-4 px-8 text-lg" >Sign in</Button>
+                        <Button className="py-4 px-8 text-lg" onClick={logGoogleUser}>Google Sign in</Button>
                     </div>
                 </form>
             </div>

@@ -16,6 +16,8 @@ import {
     getFirestore,
     collection,
     writeBatch,
+    query,
+    getDocs,
 } from "firebase/firestore"
 
 
@@ -44,15 +46,31 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider)
 
 const db = getFirestore(firebaseApp);
 
-export const addCollectionAndDocuments = (collectionKey, objectsToAdd) => {
+export const getCategoriesAndDocuments = async () => {
+    const collectionRef = collection(db, 'categories');
+    const q = query(collectionRef);
+    const querySnapshot = await getDocs(q);
+
+    const categories = querySnapshot.docs
+        .reduce((acc, categorySnapshot) => {
+            const { title, items } = categorySnapshot.data();
+            acc[title.toLowerCase()] = items;
+            return acc;
+        }, []);
+
+    return categories;
+}
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
     const collectionRef = collection(db, collectionKey);
     const batch = writeBatch(db);
 
     objectsToAdd.map((object) => {
         const docRef = doc(collectionRef, object.title.toLowerCase());
-        batch.set(docRef);
+        batch.set(docRef, object);
     });
 
+    await batch.commit();
 }
 
 export const createUserDocumentFromAuth = async (userAuth, otherInformation = {}) => {

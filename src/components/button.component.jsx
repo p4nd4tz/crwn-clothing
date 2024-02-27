@@ -2,7 +2,7 @@ const Button = ({ type = "button", backgroundColor = "bg-black", textColor = "te
     return (
         <button
             type={type}
-            className={`${backgroundColor} ${textColor} font-medium text-xl 
+            className={`${backgroundColor} ${textColor} font-medium
                 flex justify-center align-middle text-center border-none mt-2 uppercase 
                 rounded-md transition-all duration-300
                 ${className}`

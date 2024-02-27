@@ -1,18 +1,16 @@
-import ProductCard from "../components/products/product-card.component";
-import { useProducts } from "../context/products.context"
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Outlet } from "react-router-dom";
+import { fetchCategoriesAsync } from '../store/category/category.action'
 
 const Shop = () => {
-    const { products } = useProducts();
+  const dispatch = useDispatch();
 
-    return (
-        <div className="grid grid-cols-4 gap-5">
-            {
-                products.map((p) => (
-                    <ProductCard product={p} key={p.id} />
-                ))
-            }
-        </div>
-    )
-}
+  useEffect(() => {
+    dispatch(fetchCategoriesAsync());
+  }, []);
+
+  return <Outlet />;
+};
 
 export default Shop;

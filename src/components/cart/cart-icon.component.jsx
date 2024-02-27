@@ -1,16 +1,22 @@
-// import ShoppingIcon from '../../assets/shopping-bag.svg'
-
-import { useEffect } from "react";
-import { useCart } from "../../context/cart.context"
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCartCount,
+  selectIsCartOpen,
+} from "../../store/cart/cart.selector";
+import { setIsCartOpen } from "../../store/cart/cart.action";
 
 const CartIcon = () => {
-    const { isCartOpen, cartItems, cartCount, setIsCartOpen } = useCart();
+  const dispatch = useDispatch();
+  const cartCount = useSelector(selectCartCount);
+  const isCartOpen = useSelector(selectIsCartOpen);
 
-    return (
-        <span className="cursor-pointer" onClick={() => setIsCartOpen(!isCartOpen)}>
-            {cartCount}
-        </span>
-    )
-}
+  const handleClick = () => dispatch(setIsCartOpen(!isCartOpen));
 
-export default CartIcon
+  return (
+    <span className="cursor-pointer" onClick={() => handleClick()}>
+      {cartCount}
+    </span>
+  );
+};
+
+export default CartIcon;

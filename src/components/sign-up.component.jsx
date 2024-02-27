@@ -78,7 +78,7 @@ const SignUp = () => {
                         value={confirmPassword}
                         onChange={(e) => handleChange(e)}
                     />
-                    <Button className="w-1/2 p-6" type="submit">Sign Up</Button>
+                    <Button className="py-4 text-lg w-1/2" type="submit">Sign Up</Button>
                 </form>
             </div>
         </>
