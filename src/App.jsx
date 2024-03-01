@@ -10,8 +10,7 @@ import { useDispatch } from "react-redux";
 
 const Navbar = lazy(() => import("./pages/navbar.component"));
 const Home = lazy(() => import("./pages/home.component"));
-
-const SignIn = lazy(() => import("./pages/sign-in.component"));
+const Authentication = lazy(() => import("./pages/authentication"));
 const Shop = lazy(() => import("./pages/shop.component"));
 const Checkout = lazy(() => import("./pages/checkout.component"));
 
@@ -21,7 +20,7 @@ const routes = createBrowserRouter([
     element: <Navbar />,
     children: [
       { index: true, element: <Home /> },
-      { path: "sign-in", element: <SignIn /> },
+      { path: "auth", element: <Authentication /> },
       {
         path: "shop",
         element: <Shop />,

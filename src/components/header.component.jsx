@@ -35,7 +35,7 @@ const Header = () => {
             {currentUser ? (
               <NavLink onClick={() => handleSignOut()}>Sign Out</NavLink>
             ) : (
-              <NavLink to="/sign-in">Sign In</NavLink>
+              <NavLink to="/auth">Sign In</NavLink>
             )}
           </li>
           <li className="px-4">
