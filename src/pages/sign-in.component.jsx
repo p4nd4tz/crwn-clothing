@@ -25,7 +25,7 @@ const SignIn = () => {
 
         debugger;
         try {
-            await signInAuthUserWithEmailAndPassword(formFields);
+            await signInAuthUserWithEmailAndPassword(formFields.email, formFields.password);
         } catch (err) {
             console.log(err.message);
         }

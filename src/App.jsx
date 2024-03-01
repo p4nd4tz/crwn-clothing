@@ -1,17 +1,19 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Navbar from "./pages/navbar.component";
-import Home from "./pages/home.component";
-import Spinner from './components/spinner.component'
-import SignIn from "./pages/sign-in.component";
-import Shop from "./pages/shop.component";
-import Checkout from "./pages/checkout.component";
+
 import Categories from "./components/category/categories.component";
 import Category from "./components/category/category.component";
-import { useEffect } from "react";
+import { useEffect, lazy } from "react";
 import { onAuthStateChangeListner } from "./utils/firebase.utils";
-import { setCurrentUser } from "./store/user/user.action";
+import { setCurrentUser } from "./store/user/user.reducer";
 import { useDispatch } from "react-redux";
+
+const Navbar = lazy(() => import("./pages/navbar.component"));
+const Home = lazy(() => import("./pages/home.component"));
+
+const SignIn = lazy(() => import("./pages/sign-in.component"));
+const Shop = lazy(() => import("./pages/shop.component"));
+const Checkout = lazy(() => import("./pages/checkout.component"));
 
 const routes = createBrowserRouter([
   {
@@ -19,7 +21,6 @@ const routes = createBrowserRouter([
     element: <Navbar />,
     children: [
       { index: true, element: <Home /> },
-      // { index: true, element: <Spinner />},
       { path: "sign-in", element: <SignIn /> },
       {
         path: "shop",

@@ -2,7 +2,7 @@ import { BeatLoader } from "react-spinners";
 
 const Spinner = () => {
   return (
-    <div className="flex flex-grow-1 align-middle justify-center">
+    <div className="flex align-middle justify-center items-center text-center">
       <BeatLoader />
     </div>
   );

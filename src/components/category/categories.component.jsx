@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useMemo } from "react";
 import ProductCard from "../products/product-card.component";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -12,26 +12,24 @@ const Categories = () => {
   const categories = useSelector(selectCategories);
   const isLoading = useSelector(selectCategoriesIsLoading);
 
-  return (
-    <>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        Object.keys(categories).map((title) => (
-          <Fragment key={title}>
-            <h1 className="text-2xl mb-5">
-              <Link to={title}>{title}</Link>
-            </h1>
-            <div className="grid grid-cols-3 md:grid-cols-4 gap-5">
-              {categories[title].slice(0, 4).map((p) => (
-                <ProductCard product={p} key={p.id} />
-              ))}
-            </div>
-          </Fragment>
-        ))
-      )}
-    </>
-  );
+  const renderedCategories = useMemo(() => {
+    if (isLoading) return <Spinner />;
+
+    return Object.keys(categories).map((title) => (
+      <Fragment key={title}>
+        <h1 className="text-2xl mb-5 capitalize">
+          <Link to={title}>{title}</Link>
+        </h1>
+        <div className="grid grid-cols-3 md:grid-cols-4 gap-5">
+          {categories[title].slice(0, 4).map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
+        </div>
+      </Fragment>
+    ));
+  }, [categories, isLoading]);
+
+  return <>{renderedCategories}</>;
 };
 
 export default Categories;

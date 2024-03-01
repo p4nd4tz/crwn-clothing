@@ -21,24 +21,24 @@ const Header = () => {
         </NavLink>
       </div>
       <nav>
-        <ul className="flex justify-between items-center">
-          <li className="px-4 text-2xl font-medium">
+        <ul className="flex justify-between items-center text-xl font-medium">
+          <li className="px-4">
             <NavLink to="/shop">Shop</NavLink>
           </li>
-          <li className="px-4 text-2xl font-medium">
+          <li className="px-4">
             <NavLink>Contact</NavLink>
           </li>
-          <li className="px-4 text-2xl font-medium">
+          <li className="px-4">
             <NavLink>About Us</NavLink>
           </li>
-          <li className="px-4 text-2xl font-medium">
+          <li className="px-4">
             {currentUser ? (
               <NavLink onClick={() => handleSignOut()}>Sign Out</NavLink>
             ) : (
               <NavLink to="/sign-in">Sign In</NavLink>
             )}
           </li>
-          <li className="px-4 text-2xl font-medium">
+          <li className="px-4">
             <CartIcon />
           </li>
         </ul>

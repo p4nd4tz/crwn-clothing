@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../button.component";
-import { addItemsToCart } from "../../store/cart/cart.action";
-import { selectCartItems } from "../../store/cart/cart.selector";
+import { addItemsToCart } from "../../store/cart/cart.reducer";
+
+
 
 const ProductCard = ({ product }) => {
     const { name, price, imageUrl } = product;
 
     const dispatch = useDispatch();
     
-    const cartItems = useSelector(selectCartItems);
-    const addProductToCart = () => dispatch(addItemsToCart(cartItems, product));
+    const addProductToCart = () => dispatch(addItemsToCart(product));
 
     return (
         <div className={`mb-10 relative hover:opacity-80 bg-slate-50 p-4 pb-6`}>
@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
             <Button
                 backgroundColor="bg-white"
                 textColor="text-black"
-                className="absolute py-6 px-10 m-auto top-1/2 left-20 hover:bg-black hover:text-white opacity-80"
+                className="absolute py-6 px-10 m-auto top-1/2 left-20 hover:bg-black hover:text-white opacity-65"
                 onClick={addProductToCart}
             >
                 Add to cart
